@@ -11,6 +11,7 @@ namespace Models
         public string Passwd { get; set; }
 
         // Public Method Constructor for the Class Person.
+        public Person() { }
         public Person(
             string Name,
             string Cpf,
@@ -19,7 +20,6 @@ namespace Models
             string Passwd
         )
         {
-            this.Id++;
             this.Name = Name;
             this.Cpf = Cpf;
             this.Mail = Mail;

@@ -12,24 +12,24 @@ namespace Models
         public string Description { set; get; }
         [Required]
         public double Price { set; get; }
-        public int IdScheduler { set; get; }
+        public int SchedulerId { set; get; }
         public Scheduler Scheduler { get; }
 
         // The public constructor, will be call when Procedure will instantiated.
+        public Procedure() { }
         public Procedure(
             string Description,
             double Price,
-            int IdScheduler
+            int SchedulerId
         ) 
         {
-            this.Id = Id;
             this.Description = Description;
             this.Price = Price;
 
-            this.IdScheduler = IdScheduler;
+            this.SchedulerId = SchedulerId;
             // Check and find the Patient with the Same Id of the instantiated on 
             // this object, and gives to the attribute the Object found.
-            this.Scheduler = Scheduler.GetSchedulers().Find(Scheduler => Scheduler.Id == IdScheduler);
+            // this.Scheduler = Scheduler.GetSchedulers().Find(Scheduler => Scheduler.Id == SchedulerId);
                         
             // Add a Procedure in a List of Procedures on Database.
             Context db = new Context();

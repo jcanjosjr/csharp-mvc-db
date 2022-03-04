@@ -14,6 +14,7 @@ namespace Models
         public string Equipaments { set; get; }
 
         // The public constructor, will be call when Room will instantiated.
+        public Room() { }
         public Room(
             string Number,
             string Equipaments

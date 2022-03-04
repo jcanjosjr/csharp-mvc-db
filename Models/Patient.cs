@@ -9,12 +9,12 @@ namespace Models
     public class Patient : Person
     {
         // Attributes for the Patient.
-        // PatientId don't have acessors because is resolve only here.
-        public static int PatientId = 0;
         private static List<Patient> Patients = new List<Patient>();
         public DateTime BirthDate { set; get; }
 
         // The public constructor, will be call when Patient will instantiated.
+        public Patient() { }
+
         public Patient(
             string Name,
             string Cpf,

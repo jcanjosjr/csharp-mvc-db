@@ -9,27 +9,27 @@ namespace Controllers
     {
         // Create a new Scheduler.
         public static Scheduler CreateScheduler(
-            int IdPatient,
-            int IdDentist,
-            int IdRoom,
+            int PatientId,
+            int DentistId,
+            int RoomId,
             DateTime Date
         )
         {
-            PatientController.GetPatient(IdPatient);
-            DentistController.GetDentist(IdDentist);
-            RoomController.GetRoom(IdRoom);
+            PatientController.GetPatient(PatientId);
+            DentistController.GetDentist(DentistId);
+            RoomController.GetRoom(RoomId);
 
             if(Date == null || Date <= DateTime.Now)
             {
                 throw new Exception("Date can't be in the past.");
             }
 
-            if(GetSchedulerConflict(0, IdDentist, IdRoom, Date))
+            if(GetSchedulerConflict(0, DentistId, RoomId, Date))
             {
                 throw new Exception("Sorry, we already have an Scheduler at this time.");
             }
 
-            return new Scheduler(IdPatient, IdDentist, IdRoom, Date);
+            return new Scheduler(PatientId, DentistId, RoomId, Date);
         }
 
         // Check if have a Scheduler in the same Time and in the same Room, and with same Dentist
@@ -47,9 +47,9 @@ namespace Controllers
                     // Where the date of scheduler is equals date of the parameter receive.
                     where Scheduler.Date == Date
                         // and DentistID is equals of the parameter receive.
-                        && Scheduler.IdDentist == DentistId
+                        && Scheduler.DentistId == DentistId
                         // and RoomID is equals of the parameter receive.
-                        && Scheduler.IdRoom == RoomId
+                        && Scheduler.RoomId == RoomId
                         // and Scheduler Id is different of the parameter receive.
                         && Scheduler.Id != ActualId
                     // select this.
@@ -75,8 +75,8 @@ namespace Controllers
             // Check if have a conflict on scheduler date.
             if (GetSchedulerConflict(
                 scheduler.Id,
-                scheduler.IdDentist,
-                scheduler.IdRoom,
+                scheduler.DentistId,
+                scheduler.RoomId,
                 Date
             ))
             {
@@ -127,11 +127,11 @@ namespace Controllers
         }
 
         // Get the Scheduler by Pacient Id.
-        public static IEnumerable<Scheduler> GetSchedulerByPatient(int IdPatient)
+        public static IEnumerable<Scheduler> GetSchedulerByPatient(int PatientId)
         {
             try
             {
-                return Scheduler.GetSchedulers().Where(Scheduler => Scheduler.IdPatient == IdPatient);
+                return Scheduler.GetSchedulers().Where(Scheduler => Scheduler.PatientId == PatientId);
             }
             catch
             {
@@ -144,7 +144,7 @@ namespace Controllers
         {
             Scheduler scheduler = GetScheduler(Id);
 
-            if (scheduler.IdPatient != Auth.Patient.Id)
+            if (scheduler.PatientId != Auth.Patient.Id)
             {
                 throw new Exception("Scheduler don't confimed, authentication errors occurs.");
             }

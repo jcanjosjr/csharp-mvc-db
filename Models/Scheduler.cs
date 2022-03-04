@@ -9,40 +9,41 @@ namespace Models
     public class Scheduler
     {
         public int Id { set; get; }
-        public int IdPatient { set; get; }
+        public int PatientId { set; get; }
         public Patient Patient { get; }
-        public int IdDentist { set; get; }
+        public int DentistId { set; get; }
         public Dentist Dentist { set; get; }
-        public int IdRoom { set; get; }
+        public int RoomId { set; get; }
         public Room Room { get; }
         public static List<Procedure> Procedures = new List<Procedure>();
         public DateTime Date { set; get; }
         public bool Confirm { set; get; }
 
         // The public constructor, will be call when Room will instantiated.
+        public Scheduler() { }
         public Scheduler(
-            int IdPatient,
-            int IdDentist,
-            int IdRoom,
+            int PatientId,
+            int DentistId,
+            int RoomId,
             DateTime Date
         ) 
         {
             this.Id = Id;
         
-            this.IdPatient = IdPatient;
+            this.PatientId = PatientId;
             // Check and find the Patient with the Same Id of the instantiated on 
             // this object, and gives to the attribute the Object found.
-            this.Patient = Patient.GetPatients().Find(Patient => Patient.Id == IdPatient);
+            // this.Patient = Patient.GetPatients().Find(Patient => Patient.Id == PatientId);
 
-            this.IdDentist = IdDentist;
+            this.DentistId = DentistId;
             // Check and find the Patient with the Same Id of the instantiated on 
             // this object, and gives to the attribute the Object found.
-            this.Dentist = Dentist.GetDentists().Find(Dentist => Dentist.Id == IdDentist);
+            // this.Dentist = Dentist.GetDentists().Find(Dentist => Dentist.Id == DentistId);
 
-            this.IdRoom = IdRoom;
+            this.RoomId = RoomId;
             // Check and find the Patient with the Same Id of the instantiated on 
             // this object, and gives to the attribute the Object found.
-            this.Room = Room.GetRooms().Find(Room => Room.Id == IdRoom);
+            // this.Room = Room.GetRooms().Find(Room => Room.Id == RoomId);
 
             this.Date = Date;
 

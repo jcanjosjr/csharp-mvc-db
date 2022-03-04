@@ -12,6 +12,7 @@ namespace Models
         public string Detail { set; get; }
 
         // The public constructor, will be call when Procedure will instantiated.
+        public Speciality() { }
         public Speciality(
             string Description,
             string Detail

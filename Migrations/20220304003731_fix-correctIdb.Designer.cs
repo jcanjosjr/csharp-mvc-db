@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
 namespace Odonto.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220304003731_fix-correctIdb")]
+    partial class fixcorrectIdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,9 @@ namespace Odonto.Migrations
 
                     b.Property<string>("Cpf")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("DentistId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mail")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -41,7 +46,7 @@ namespace Odonto.Migrations
                     b.Property<string>("Register")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("SpecialityId")
+                    b.Property<int>("SpeciliatyId")
                         .HasColumnType("int");
 
                     b.Property<double>("Wage")
