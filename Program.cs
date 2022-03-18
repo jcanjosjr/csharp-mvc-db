@@ -1,12 +1,13 @@
-using System;
 using Views;
-using Controllers;
 using Models;
+using System;
+using System.Windows.Forms;
 
 namespace ConsultorioOdontologico
 {
     public class Program
     {
+
         public static string ReadPassword()
         {
             string password = "";
@@ -42,6 +43,7 @@ namespace ConsultorioOdontologico
             return password;
         }
 
+        [STAThread]
         public static void Main(string[] args)
         {
             //SpecialityController.CreateSpeciality("General Clinic", "General practitioner dentist is usually the first dental professional to be in contact with the patient");
@@ -51,6 +53,9 @@ namespace ConsultorioOdontologico
             //SchedullerController.CreateScheduler(1, 1, 1, Convert.ToDateTime("2022-04-05"));
             //ProcedureController.CreateProcedure("General diagnosis", 300, 1);
             // MenuPrincipal();
+
+            Application.EnableVisualStyles();
+            Application.Run(new Login());
 
             do
             {
